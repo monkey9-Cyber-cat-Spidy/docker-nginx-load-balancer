@@ -1,0 +1,46 @@
+version: '3.8'
+
+services:
+  nginx-lb:
+    image: nginx:1.25-alpine
+    container_name: nginx_load_balancer
+    ports:
+      - "80:80"
+    volumes:
+      - ./nginx/nginx.conf:/etc/nginx/nginx.conf:ro
+      - ./nginx/conf.d:/etc/nginx/conf.d:ro
+    depends_on:
+      - app_1
+      - app_2
+      - app_3
+    restart: always
+
+  app_1:
+    build:
+      context: ./app
+      dockerfile: Dockerfile
+    container_name: backend_app_1
+    environment:
+      - INSTANCE_ID=backend-node-alpha
+      - PORT=3000
+    restart: always
+
+  app_2:
+    build:
+      context: ./app
+      dockerfile: Dockerfile
+    container_name: backend_app_2
+    environment:
+      - INSTANCE_ID=backend-node-beta
+      - PORT=3000
+    restart: always
+
+  app_3:
+    build:
+      context: ./app
+      dockerfile: Dockerfile
+    container_name: backend_app_3
+    environment:
+      - INSTANCE_ID=backend-node-gamma
+      - PORT=3000
+    restart: always

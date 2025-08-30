@@ -1,4 +1,23 @@
 {
   "name": "docker-nginx-load-balancer",
-  "version": "1.0.0"
+  "version": "1.0.0",
+  "description": "Production containerized high availability Nginx reverse proxy and multi-upstream load balancing topology with health checks and rate limiting.",
+  "type": "module",
+  "scripts": {
+    "start": "docker compose up --build",
+    "test": "node --test test/*.test.js"
+  },
+  "dependencies": {},
+  "keywords": [
+    "nginx",
+    "load-balancer",
+    "docker",
+    "docker-compose",
+    "reverse-proxy",
+    "high-availability",
+    "devops",
+    "vps"
+  ],
+  "author": "Kuncham Venkata Satya Manikanta",
+  "license": "MIT"
 }
